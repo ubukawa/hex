@@ -22,8 +22,6 @@ let i = 0
 let y = 0
 
 while (y < ymax - r){
-    console.log(i)
-    //console.log(y)
     ylist.push(y)
     i ++
     y = y + 3*r/2
@@ -32,14 +30,23 @@ while (y < ymax - r){
 y = -3*r
 
 while (y > ymin + r){
-    console.log(i)
+    //console.log(i)
     //console.log(y)
     ylist.push(y)
     i ++
     y = y - 3*r/2
 }
 
-console.log(ylist) //if y/r is an integer, x starts from zero. Otherwise, x starst from sqrt(3)/2
+//console.log(ylist) //if y/r is an integer, x starts from zero. Otherwise, x starst from sqrt(3)/2
+
+for (let y0 of ylist){
+    if ( y0 % r == 0 ){
+        console.log(`${y0} is A`)
+    } else {
+        console.log(`${y0} is B`)
+    }
+}
+
 
 //console.log(xmin)
 //console.log(xmax)
