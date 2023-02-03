@@ -52,8 +52,7 @@ for (let cy of ylist){
     if ( cy % r == 0 ){
         let xlist = []
         let x = 0
-        console.log(`${cy} is A`)
-
+        console.log(`${y0} is A`)
         while (x < xmax - Math.sqrt(3)*r/2){
             xlist.push(x)
             x = x + Math.sqrt(3)*r
@@ -87,8 +86,7 @@ for (let cy of ylist){
     } else {
         let xlist = []
         let x = Math.sqrt(3)*r/2
-
-        console.log(`${cy} is B`)
+        console.log(`${y0} is B`)
         while (x < xmax - Math.sqrt(3)*r/2){
             xlist.push(x)
             x = x + Math.sqrt(3)*r
@@ -126,3 +124,44 @@ for (let cy of ylist){
 stream.end()
 console.log('end')
 
+
+
+//console.log(xmin)
+//console.log(xmax)
+//console.log(ymin)
+//console.log(ymax)
+
+/*
+const stream = fs.createWriteStream(`${outputFile}.txt`)
+
+let x = 0
+let y = 0
+let f = new Object()
+f.type = 'Feature'
+f.properties = {}
+f.geometry = {}
+f.tippecanoe = {}
+
+f.properties._id = 1
+
+//defining feature
+f.geometry.type = 'Polygon'
+let p1 = [x, y + r]
+let p2 = [x - Math.sqrt(3) * r /2 , y + r/2]
+let p3 = [x - Math.sqrt(3) * r /2 , y - r/2]
+let p4 = [x, y - r]
+let p5 = [x + Math.sqrt(3) * r /2 , y - r/2]
+let p6 = [x + Math.sqrt(3) * r /2 , y + r/2]
+f.geometry.coordinates = [[p1,p2,p3,p4,p5,p6]]
+
+f.tippecanoe.layer = layer 
+f.tippecanoe.minzoom = minz
+f.tippecanoe.maxzoom = maxz
+
+stream.write(JSON.stringify(f))
+stream.write(', \n')
+//console.log(f)
+
+stream.end()
+console.log('end')
+/*

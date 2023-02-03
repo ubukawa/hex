@@ -1,10 +1,10 @@
 {
-    r: 400000,
-    gap: 0.01,
-    minz: 0,
-    maxz: 3,
-    layer: hex,
-    outputFile: test-out,
-    xRange: 40075016.68,
+    r: 400000
+    gap: 0.01
+    minz: 0
+    maxz: 3
+    layer: hex
+    outputFile: test-out
+    xRange: 40075016.68
     yRange: 40097932.2
 }
