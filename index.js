@@ -17,7 +17,7 @@ const xmax =  xRange/2
 const ymin = - yRange/2
 const ymax = yRange/2
 
-const stream = fs.createWriteStream(`${outputFile}.txt`)
+const stream = fs.createWriteStream(`${outputFile}.geojsons`)
 
 let f = new Object()
 f.type = 'Feature'
