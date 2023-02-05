@@ -35,7 +35,7 @@ while (y < ymax - r){
     y = y + 3*r/2
 }
 
-y = -3*r
+y = -3*r/2
 
 while (y > ymin + r){
     ylist.push(y)
