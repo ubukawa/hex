@@ -3,27 +3,40 @@ const config = require('config')
 const fs = require('fs')
 
 // parameters
-const r = config.get('r')
+
 const outputFile = config.get('outputFile')
 const minz = config.get('minz')
 const maxz = config.get('maxz')
 const layer = config.get('layer')
 const xRange = config.get('xRange')
 const yRange = config.get('yRange')
-
+const epsg = config.get('epsg')
+//const r = config.get('r')
+let r
+if (process.argv[2]) {
+    r = process.argv[2] 
+} else {
+    r = config.get('r')
+}
 
 const xmin = - xRange/2
 const xmax =  xRange/2
 const ymin = - yRange/2
 const ymax = yRange/2
 
-const stream = fs.createWriteStream(`${outputFile}.geojsons`)
+let rkm = Math.floor(r/1000)
 
-let f = new Object()
-f.type = 'Feature'
-f.properties = {}
-f.geometry = {}
-f.tippecanoe = {}
+const stream = fs.createWriteStream(`${outputFile}-${rkm}.geojson`)
+
+let featureCollection = new Object()
+featureCollection.type = 'FeatureCollection'
+featureCollection.name =  `hex-${r}`
+featureCollection.crs = {}
+featureCollection.crs.type = 'name'
+featureCollection.crs.properties = {}
+featureCollection.crs.properties.name = `urn:ogc:def:crs:EPSG::${epsg}`
+featureCollection.features = []
+
 
 let ylist = []
 let row = 0
@@ -68,6 +81,11 @@ for (let cy of ylist){
 
         for ( let cx of xlist){
             id ++
+            let f = new Object()
+            f.type = 'Feature'
+            f.properties = {}
+            f.geometry = {}
+            f.tippecanoe = {}
             f.properties._id = id
             f.geometry.type = 'Polygon'
             let p1 = [cx, cy + r]
@@ -81,8 +99,9 @@ for (let cy of ylist){
             f.tippecanoe.minzoom = minz
             f.tippecanoe.maxzoom = maxz
 
-            stream.write(JSON.stringify(f))
-            stream.write(', \n')
+            //stream.write(JSON.stringify(f))
+            //stream.write(', \n')
+            featureCollection.features.push(f)
         }
     } else {
         let xlist = []
@@ -103,6 +122,11 @@ for (let cy of ylist){
 
         for ( let cx of xlist){
             id ++
+            let f = new Object()
+            f.type = 'Feature'
+            f.properties = {}
+            f.geometry = {}
+            f.tippecanoe = {}
             f.properties._id = id
             f.geometry.type = 'Polygon'
             let p1 = [cx, cy + r]
@@ -116,13 +140,15 @@ for (let cy of ylist){
             f.tippecanoe.minzoom = minz
             f.tippecanoe.maxzoom = maxz
 
-            stream.write(JSON.stringify(f))
-            stream.write(', \n')
+            //stream.write(JSON.stringify(f))
+            //stream.write(', \n')
+            featureCollection.features.push(f)
         }
     }
 }
 
-
+stream.write(JSON.stringify(featureCollection))
 stream.end()
+//console.log(JSON.stringify(featureCollection))
 console.log('end')
 
