@@ -1,10 +1,11 @@
 {
-    r: 70000
+    r: 100000
     gap: 0.01
     minz: 0
     maxz: 4
     layer: hex
-    outputFile: test-700
+    outputFile: test-100
+    epsg: 3857
     xRange: 40075016.68
     yRange: 40097932.2
 }
