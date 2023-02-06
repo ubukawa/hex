@@ -36,12 +36,6 @@ node index.js
 ```
 Please wait for a while until GeoJSON file is created.  
 
-or you can overwrite "r" in config by running command as below: 
-
-```
-node index.js 100000 # specify the r in meters.
-```
-
 You will get the file ${outputFile}-(length in km).geojson. 
 
 ## 3. Convert GeoJSON into vector tile
@@ -49,6 +43,13 @@ You will get the file ${outputFile}-(length in km).geojson.
 ```
 tippecanoe -o docs/output.pmtiles --no-tile-compression --no-feature-limit --no-tile-size-limit --projection=EPSG:3857 --force input.geojson  
 
+```
+
+
+## (fyi) shape conversion
+
+```
+ogr2ogr -f "ESRI Shapefile" shp/400.shp geojson/output-400.geojson
 ```
 
 

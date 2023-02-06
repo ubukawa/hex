@@ -1,10 +1,10 @@
 {
-    r: 80000
+    r: 800000
     gap: 0.01
     minz: 0
     maxz: 4
     layer: hex
-    outputFile: output
+    outputFile: geojson/output
     epsg: 3857
     xRange: 40075016.68
     yRange: 40097932.2

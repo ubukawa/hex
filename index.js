@@ -11,13 +11,18 @@ const layer = config.get('layer')
 const xRange = config.get('xRange')
 const yRange = config.get('yRange')
 const epsg = config.get('epsg')
-//const r = config.get('r')
+const r = config.get('r')
+
+// not working well.
+/*
 let r
 if (process.argv[2]) {
     r = process.argv[2] 
 } else {
     r = config.get('r')
+    r = parseInt(r)
 }
+*/
 
 const xmin = - xRange/2
 const xmax =  xRange/2
